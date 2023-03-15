@@ -115,7 +115,7 @@ int main(int argc, char *argv[]) {
       auto llvmModule = CodeGenerator::generate(ast.get(), analysisResults.get(), sourceFile);
 
       if (!disopt) {
-        Optimizer::optimize(llvmModule.get());
+        Optimizer::optimize(llvmModule.get(), false);
       }
 
       if(emitHrAsm) {

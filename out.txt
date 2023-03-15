@@ -2,3 +2,7 @@
 ./bm.sh  0.09s user 0.18s system 75% cpu 0.352 total
 
 ./bm.sh  0.09s user 0.15s system 52% cpu 0.455 total
+
+./bm.sh  0.82s user 1.51s system 74% cpu 3.116 total
+./bm.sh  0.84s user 1.59s system 65% cpu 3.679 total
+

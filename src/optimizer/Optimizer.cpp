@@ -31,7 +31,7 @@
 
 using namespace llvm;
 
-void Optimizer::optimize(Module* theModule) {
+void Optimizer::optimize(Module* theModule, bool extraOpts = false) {
     // Create the analysis managers.
     LoopAnalysisManager LAM;
     FunctionAnalysisManager FAM;
@@ -94,14 +94,19 @@ void Optimizer::optimize(Module* theModule) {
 //  }
 //    FPM.addPass(InlinerPass());
 //    FPM.addPass(PartialInlinerPass());
-    FPM.addPass(createFunctionToLoopPassAdaptor(LoopUnrollAndJamPass()));
-    FPM.addPass(TailCallElimPass());
-    FPM.addPass(JumpThreadingPass());
-    FPM.addPass(DCEPass());
+    extraOpts = false;
+    if(extraOpts){
+        FPM.addPass(createFunctionToLoopPassAdaptor(LoopUnrollAndJamPass()));
+        FPM.addPass(TailCallElimPass());
+        FPM.addPass(JumpThreadingPass());
+        FPM.addPass(DCEPass());
+    }
 
     MPM.addPass(createModuleToFunctionPassAdaptor(std::move(FPM)));
 
-    MPM.addPass(PartialInlinerPass());
+    if(extraOpts){
+        MPM.addPass(PartialInlinerPass());
+    }
 
     MPM.run(* theModule, MAM);
 }
