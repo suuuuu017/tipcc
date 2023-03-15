@@ -1,0 +1,1 @@
+for i in {1..100}; do ./bin/build.sh ./bm1.tip; done

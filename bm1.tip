@@ -1,0 +1,25 @@
+rec(n) {
+    var f;
+    if (n==0) { f=1; }
+    else { f=n*rec(n-1); }
+    return f;
+}
+
+loop(a){
+    var b,i;
+    b = 42;
+    i = a;
+    while (b > i) {
+    //...
+      i = i + 1;
+    }
+    return 0;
+}
+
+main() {
+    var n, a, lr;
+    n = 20;
+    a = 5;
+    lr = loop(a);
+    return rec(n);
+}

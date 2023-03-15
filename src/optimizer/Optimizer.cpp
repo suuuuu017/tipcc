@@ -20,6 +20,13 @@
 #include "llvm/Transforms/Scalar/NewGVN.h"
 #include "llvm/Transforms/Scalar/SimplifyCFG.h"
 
+#include "llvm/Transforms/IPO/Inliner.h"
+#include "llvm/Transforms/IPO/PartialInlining.h"
+#include "llvm/Transforms/Scalar/LoopUnrollAndJamPass.h"
+#include "llvm/Transforms/Scalar/TailRecursionElimination.h"
+#include "llvm/Transforms/Scalar/DCE.h"
+#include "llvm/Transforms/Scalar/JumpThreading.h"
+
 #include "loguru.hpp"
 
 using namespace llvm;
@@ -85,7 +92,16 @@ void Optimizer::optimize(Module* theModule) {
 //
 //    TheFPM->run(fun);
 //  }
+//    FPM.addPass(InlinerPass());
+//    FPM.addPass(PartialInlinerPass());
+    FPM.addPass(createFunctionToLoopPassAdaptor(LoopUnrollAndJamPass()));
+    FPM.addPass(TailCallElimPass());
+    FPM.addPass(JumpThreadingPass());
+    FPM.addPass(DCEPass());
 
     MPM.addPass(createModuleToFunctionPassAdaptor(std::move(FPM)));
+
+    MPM.addPass(PartialInlinerPass());
+
     MPM.run(* theModule, MAM);
 }
