@@ -1,30 +1,28 @@
-rec(n) {
-    var f;
-    if (n==0) { f=1; }
-    else { f=n*rec(n-1); }
-    return f;
-}
 
 loop(a){
-    var b,i;
+    var b,i,j;
     b = 42;
     i = a;
+    j = 5;
     while (b > i) {
+
     //...
       i = i + 1;
+      while ( 20 > j){
+        j = j + 1;
+      }
     }
     return 0;
 }
 
 main() {
-    var n, a, lr, i, rr;
+    var n, a, lr, i;
     n = 20;
     a = 5;
     i = 0;
     while(10 > i){
         i = i + 1;
         lr = loop(a);
-        rr = rec(n);
     }
     return 0;
 }

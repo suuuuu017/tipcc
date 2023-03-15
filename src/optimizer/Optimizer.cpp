@@ -94,7 +94,7 @@ void Optimizer::optimize(Module* theModule, bool extraOpts = false) {
 //  }
 //    FPM.addPass(InlinerPass());
 //    FPM.addPass(PartialInlinerPass());
-    extraOpts = false;
+    extraOpts = true;
     if(extraOpts){
         FPM.addPass(createFunctionToLoopPassAdaptor(LoopUnrollAndJamPass()));
         FPM.addPass(TailCallElimPass());

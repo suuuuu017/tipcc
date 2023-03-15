@@ -1,0 +1,21 @@
+cmp(x){
+    var y, z;
+    y = 20;
+    z = 30;
+    if (1){
+        x = 4;
+    }
+    if (10 > x)
+        y = y + 1;
+    else
+        z = z - 1;
+    return 0;
+}
+
+main() {
+    var x, cmpr;
+    x = 10;
+    cmpr = cmp(x);
+    return 0;
+}
+    

@@ -1,0 +1,24 @@
+f(a){
+    var b,c;
+    b = 3;
+    c = 2;
+    return b * c;
+}
+
+g(a){
+    var b,c;
+    b = 3;
+    c = 2;
+    return b + c;
+}
+
+main(){
+    var a, fr, gr;
+    a = 20;
+    if( a>17 ){
+        fr = f(a);
+    } else {
+        gr = g(a);
+    }
+    return 0;
+}
